@@ -1,103 +1,151 @@
-import Image from "next/image";
+// pages/index.js
 
-export default function Home() {
+import Hero from "./components/Hero";
+import ProductCarousel from "./components/CarrouselCookies";
+import Footer from "./components/Footer";
+import kchips from "../../public/kchips.jpg";
+import arequipito from "../../public/arequipito.jpg";
+import chocolatier from "../../public/chocolatier.jpg";
+import red from "../../public/red.jpg";
+import cheesecake from "../../public/cheese.jpg";
+import chocoRed from "../../public/chocored.jpg";
+import churro from "../../public/churro.jpg";
+import kinder from "../../public/kinder.jpg";
+import { CartProvider } from "./context";
+import Header from "./components/Header";
+
+const cookies = [
+  {
+    id: 1,
+    name: "Krunch Chips",
+    description:
+      "Galleta de 100gr, su base es de vainilla con chips de chocolate negro.",
+    price: 6500,
+    imageUrl: kchips.src,
+    quantity: 0,
+  },
+  // {
+  //   name: "Krunch S’more",
+  //   description:
+  //     "Galleta de 115gr, su sabor es de vainilla con chips de chocolate y relleno de marshmallow.",
+  //   price: 9300,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Krunch+S'more",
+  // },
+  {
+    id: 2,
+    name: "Arequipito",
+    description:
+      "Galleta de 115gr, su base es de vainilla con chips de chocolate negro y relleno de arequipe.",
+    price: 13000,
+    imageUrl: arequipito.src,
+    quantity: 0,
+  },
+  {
+    id: 3,
+    name: "Chocolatier",
+    description:
+      "Galleta de 115gr, su base es de vainilla con chips de chocolate negro con relleno de nutella.",
+    price: 9500,
+    imageUrl: chocolatier.src,
+    quantity: 0,
+  },
+  {
+    id: 4,
+    name: "Red Velvet",
+    description: "Galleta de 100gr, su base es de cocoa.",
+    price: 6500,
+    imageUrl: red.src,
+    quantity: 0,
+  },
+  {
+    id: 5,
+    name: "Cheesecake",
+    description:
+      "Galleta de 100gr, su base es de red velvet, con chips de chocolate blanco tiene un exquisito relleno de queso crema.",
+    price: 8500,
+    imageUrl: cheesecake.src,
+    quantity: 0,
+  },
+  {
+    id: 6,
+    name: "Choco-Red",
+    description:
+      "Galleta de 115gr, su base es de red velvet con relleno de nutella.",
+    price: 9500,
+    imageUrl: chocoRed.src,
+    quantity: 0,
+  },
+  // {
+  //   name: "Arequipito Red",
+  //   description:
+  //     "Galleta de 115gr, su base es de red velvet con relleno de arequipe.",
+  //   price: 12000,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Arequipito+Red",
+  // },
+  // {
+  //   name: "Blueberry Krunch",
+  //   description:
+  //     "Galleta de 115gr, su base es de vainilla con chips de chocolate blanco y arándano con un delicioso topping de chocolate blanco.",
+  //   price: 9500,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Blueberry+Krunch",
+  // },
+  {
+    id: 7,
+    name: "Kinder Bueno",
+    description:
+      "Galleta de 115gr, su base es vainilla con chips de chocolate negro, tiene trozos de kinder y para darle un toque un delicioso topping de kinder bueno.",
+    price: 10000,
+    imageUrl: kinder.src,
+    quantity: 0,
+  },
+  // {
+  //   name: "Oreo Chips",
+  //   description:
+  //     "Galleta de 115gr, su base es de red velvet, tiene trozos de galleta oreo y chips de chocolate blanco como topping pequeños trozos de oreo.",
+  //   price: 7000,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Oreo+Chips",
+  // },
+  // {
+  //   name: "Choco S’more",
+  //   description:
+  //     "Galleta de 115gr, su sabor es de vainilla con chips de chocolate y relleno es marshmallow cubierto de chocolate.",
+  //   price: 10000,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Choco+S'more",
+  // },
+  // {
+  //   name: "Jumbo Cookie",
+  //   description:
+  //     "Galleta de 115gr, su sabor es de chocolatina jumbo, tiene chips de chocolate y maní.",
+  //   price: 8500,
+  //   imageUrl: "https://via.placeholder.com/400x400?text=Jumbo+Cookie",
+  // },
+  {
+    id: 8,
+    name: "Churro",
+    description:
+      "Galleta de 115gr, su base es de canela, topping de crema especial al estilo cookie krunch.",
+    price: 8000,
+    imageUrl: churro.src,
+    quantity: 0,
+  },
+];
+
+const LandingPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      <CartProvider>
+        <Header />
+        <Hero />
+        <ProductCarousel products={cookies} />
+        <Footer />
+      </CartProvider>
+      {/* <main>
+        <h1>Bienvenido a nuestra Galletería</h1>
+        <p>Disfruta de nuestras deliciosas galletas artesanales.</p>
+        <Link href="/catalogo">Visitar el catálogo de productos</Link>
+      </main> */}
     </div>
   );
-}
+};
+
+export default LandingPage;
