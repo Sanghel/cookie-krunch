@@ -12,17 +12,26 @@ const CartItem = ({ product }: { product: CardCookie }) => {
     cart.filter((item: CardCookie) => item.id === product.id).length
   );
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newQuantity = parseInt(e.target.value);
-    setQuantity(newQuantity);
-    // Aquí puedes agregar la lógica para actualizar la cantidad en el carrito
-    if (newQuantity > 0) {
-      for (let i = quantity; i < newQuantity; i++) {
+    const currentQuantity = cart.filter(
+      (item: CardCookie) => item.id === product.id
+    ).length;
+
+    // Si la nueva cantidad es mayor, añadimos el producto al carrito
+    if (newQuantity > currentQuantity) {
+      for (let i = currentQuantity; i < newQuantity; i++) {
         addToCart(product);
       }
-    } else {
+    } else if (newQuantity < currentQuantity) {
       removeFromCart(product.id);
+      for (let i = 0; i < newQuantity; i++) {
+        addToCart(product);
+      }
     }
+
+    // Actualizamos el estado local
+    setQuantity(newQuantity);
   };
 
   const handleRemoveClick = () => {
@@ -46,13 +55,17 @@ const CartItem = ({ product }: { product: CardCookie }) => {
 
       {/* Cantidad */}
       <div className="flex items-center space-x-2">
-        <input
-          type="number"
+        <select
           value={quantity}
           onChange={handleQuantityChange}
-          min="1"
           className="w-12  border rounded-md text-center text-[#592616]"
-        />
+        >
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
 
         {/* Icono de eliminar */}
         <button
